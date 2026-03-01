@@ -9,6 +9,9 @@ summary_endpoint = '/v1/accounting/od/tips_cpi_data_summary'
 details_endpoint = '/v1/accounting/od/tips_cpi_data_detail'
 sfields = ["cusip", "interest_rate", "security_term", "series", "original_issue_date", "maturity_date"]
 ifields = ["index_date", "index_ratio"]
+mikefields = {"cusip": "Cusip", "interest_rate": "Coupon", "maturity_date": "Maturity Date", 
+              "security_term": "Term", "series": "Series", "original_issue_date": "Issue Date",
+              "index_ratio": "Inflation Factor", "index_date": "Inflation Date"}
 my_tips = []
 
 def get_all_tips():
@@ -48,19 +51,21 @@ def main():
     for tip in tips_list:
         my_tip = {}
         for fieldname in sfields:
-            my_tip[fieldname] = tip.get(fieldname)
+            if tip.get(fieldname):
+                my_tip[mikefields[fieldname]] = tip[fieldname]
         my_tips.append(my_tip)
     index_list = get_indexes(idate)
     print ("total indexes received: ", len(index_list))
     # go thru tips and search for and recover index info
     for tip in my_tips:
-        index = find_index(tip["cusip"], index_list)
-        tip["index_ratio"] = index.get("index_ratio")
-        tip["index_date"] = index.get("index_date")
-        if tip["index_ratio"]:
-            tip["adjusted_principal"] = int(float(tip["index_ratio"]) * 100000) / 100
+        index = find_index(tip[mikefields["cusip"]], index_list)
+        tip[mikefields["index_ratio"]] = index.get("index_ratio")
+        tip[mikefields["index_date"]] = index.get("index_date")
+        if tip[mikefields["index_ratio"]]:
+            tip["Adjusted Principal"] = int(float(tip[mikefields["index_ratio"]]) * 100000) / 100
         else:
-            tip["adjusted_principal"] = None
+            tip["Adjusted Principal"] = None
+    my_tips.sort(key=lambda x: x["Maturity Date"])
     writefile(my_tips)
     print("All done.")
 
