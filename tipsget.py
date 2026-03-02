@@ -75,7 +75,7 @@ def writefile(tips):
 
 def main():
     #idate = datetime.now()
-    idate = datetime(2026, 3, 1)
+    idate = datetime(2026, 3, 10)
     tips_list = get_all_tips()
     print ("Total tips received :", len(tips_list))
     # go thru recovered fields and place selected ones in my_tips
