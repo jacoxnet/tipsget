@@ -1,2 +1,2 @@
 #!/bin/sh
-python3 /Users/jacox/code/tipsget/tipsget.py
+python3 /home/jacox/code/tipsget/tipsget.py
