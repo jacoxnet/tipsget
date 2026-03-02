@@ -56,7 +56,7 @@ def get_cpiu(the_date):
     daily_cpiu_inc = (ob2 - ob1) / monthrange(the_date.year, the_date.month)[1]
     print("daily_cpiu_inc: ", daily_cpiu_inc)
     # return daily increase times days so far in this month to get increase in CPI-U since index date
-    return ob1 + daily_cpiu_inc * the_date.day
+    return ob1 + daily_cpiu_inc * (the_date.day - 1)
 
 # search index_list for cusip and return index info if found, otherwise return default
 def find_index(cusip, index_list):
@@ -74,7 +74,8 @@ def writefile(tips):
         writer.writerows(tips)
 
 def main():
-    idate = datetime.now()
+    #idate = datetime.now()
+    idate = datetime(2026, 3, 1)
     tips_list = get_all_tips()
     print ("Total tips received :", len(tips_list))
     # go thru recovered fields and place selected ones in my_tips
@@ -97,7 +98,8 @@ def main():
         else:
             tip["Adjusted Principal"] = None
         tip["Current CPIU"] = cpiu
-        tip["Calculated Inflation Factor"] = cpiu / float(tip["Dated date CPI-U"])
+        tip["Calculated Inflation Factor"] = round((cpiu / float(tip["Dated date CPI-U"])), 5)
+        # tip["Calculated Inflation Factor"] = cpiu / float(tip["Dated date CPI-U"])
     my_tips.sort(key=lambda x: x["Maturity Date"])
     writefile(my_tips)
     print("All done.")
