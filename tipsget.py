@@ -11,7 +11,7 @@ baseUrlt = 'https://api.fiscaldata.treasury.gov/services/api/fiscal_service'
 summary_endpoint = '/v1/accounting/od/tips_cpi_data_summary'
 details_endpoint = '/v1/accounting/od/tips_cpi_data_detail'
 baseUrlfed = 'https://api.stlouisfed.org/fred/series/observations'
-fedAPIkey = os.getenv("SFEDKEY")
+fedAPIkey = os.getenv("FRED_API_KEY")
 ifields = ["index_date", "index_ratio"]
 mikefields = {"cusip": "Cusip", "interest_rate": "Coupon", "maturity_date": "Maturity Date", 
               "security_term": "Term", "series": "Series", "original_issue_date": "Issue Date",
