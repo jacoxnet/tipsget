@@ -4,6 +4,9 @@ from datetime import datetime
 import os
 from dateutil.relativedelta import relativedelta
 from calendar import monthrange
+from dotenv import load_dotenv
+
+load_dotenv()
 
 filename = "tips.csv"
 default = {}
