@@ -1,0 +1,17 @@
+[project]
+name = "tipsget"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "certifi==2026.2.25",
+    "charset-normalizer==3.4.4",
+    "dotenv==0.9.9",
+    "idna==3.11",
+    "python-dateutil==2.9.0.post0",
+    "python-dotenv==1.2.2",
+    "requests==2.32.5",
+    "six==1.17.0",
+    "urllib3==2.6.3",
+]
