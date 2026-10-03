@@ -1,0 +1,19 @@
+{
+  "name": "tipsget",
+  "version": "1.0.0",
+  "description": "Get TIPS data from api.fiscaldata.treasury.gov and CPI-U from FRED, and write it out as CSV",
+  "license": "SEE LICENSE IN LICENSE",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "start": "node src/tipsget.ts",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2"
+  }
+}

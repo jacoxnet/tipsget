@@ -1,2 +1,2 @@
 #!/bin/sh
-python3 /Users/jacox/code/tipsget/tipsget.py
+node /Users/jacox/code/tipsget/src/tipsget.ts
