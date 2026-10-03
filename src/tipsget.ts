@@ -1,4 +1,11 @@
-import { writeFileSync } from "node:fs";
+import { existsSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+
+// load FRED_API_KEY from the .env in the folder above the project (variables already set take precedence)
+const envFile = join(import.meta.dirname, "..", "..", ".env");
+if (existsSync(envFile)) {
+  process.loadEnvFile(envFile);
+}
 
 const filename = "tips.csv";
 const baseUrlt = "https://api.fiscaldata.treasury.gov/services/api/fiscal_service";
